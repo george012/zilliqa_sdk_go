@@ -21,7 +21,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/george012/zilliqa_sdk_go/core"
-	"github.com/ybbus/jsonrpc/v3"
+	"github.com/ybbus/jsonrpc/v2"
 	"io/ioutil"
 	"net/http"
 )

@@ -18,8 +18,8 @@ package mpt
 
 import (
 	"errors"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"sync"
 )
 
