@@ -20,11 +20,11 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"math/big"
 
-	"github.com/Zilliqa/gozilliqa-sdk/v3/keytools"
 	"github.com/btcsuite/btcd/btcec/v2"
+	"github.com/george012/zilliqa_sdk_go/keytools"
 )
 
 var bintZero = big.NewInt(0)

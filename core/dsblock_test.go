@@ -18,8 +18,8 @@ package core
 
 import (
 	"encoding/json"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/multisig"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
+	"github.com/george012/zilliqa_sdk_go/multisig"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"io/ioutil"
 	"strings"
 	"testing"

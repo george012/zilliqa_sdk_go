@@ -20,11 +20,11 @@ package account
 import (
 	"fmt"
 
-	"github.com/Zilliqa/gozilliqa-sdk/v3/crypto"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/keytools"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
 	"github.com/btcsuite/btcd/btcutil/hdkeychain"
 	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/george012/zilliqa_sdk_go/crypto"
+	"github.com/george012/zilliqa_sdk_go/keytools"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"github.com/tyler-smith/go-bip39"
 )
 

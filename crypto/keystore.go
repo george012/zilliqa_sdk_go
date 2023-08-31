@@ -24,8 +24,8 @@ import (
 	"errors"
 	"strings"
 
-	"github.com/Zilliqa/gozilliqa-sdk/v3/keytools"
-	util2 "github.com/Zilliqa/gozilliqa-sdk/v3/util"
+	"github.com/george012/zilliqa_sdk_go/keytools"
+	util2 "github.com/george012/zilliqa_sdk_go/util"
 	"github.com/google/uuid"
 )
 

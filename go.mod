@@ -1,6 +1,7 @@
-module github.com/Zilliqa/gozilliqa-sdk/v3
+module github.com/george012/zilliqa_sdk_go
 
 require (
+	github.com/george012/zilliqa_sdk_go v0.0.1
 	github.com/btcsuite/btcd v0.23.2
 	github.com/btcsuite/btcd/btcec/v2 v2.2.0
 	github.com/btcsuite/btcd/btcutil v1.1.3
@@ -10,8 +11,7 @@ require (
 	github.com/gorilla/websocket v1.5.0
 	github.com/stretchr/testify v1.8.1
 	github.com/tyler-smith/go-bip39 v1.1.0
-	github.com/ybbus/jsonrpc v2.1.2+incompatible
-	github.com/ybbus/jsonrpc/v3 v3.1.1
+	github.com/ybbus/jsonrpc/v3 v3.1.4
 	golang.org/x/crypto v0.4.0
 	golang.org/x/sync v0.1.0
 	google.golang.org/protobuf v1.26.0

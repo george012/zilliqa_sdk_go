@@ -17,7 +17,7 @@
 package subscription
 
 import (
-	provider2 "github.com/Zilliqa/gozilliqa-sdk/v3/provider"
+	provider2 "github.com/george012/zilliqa_sdk_go/provider"
 	"os"
 	"testing"
 )

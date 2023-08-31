@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"errors"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/core"
-	"github.com/ybbus/jsonrpc"
+	"github.com/george012/zilliqa_sdk_go/core"
+	"github.com/ybbus/jsonrpc/v3"
 	"io/ioutil"
 	"net/http"
 )

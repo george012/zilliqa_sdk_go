@@ -19,9 +19,9 @@ package subscription
 import (
 	"context"
 	"fmt"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/core"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/provider"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/workpool"
+	"github.com/george012/zilliqa_sdk_go/core"
+	"github.com/george012/zilliqa_sdk_go/provider"
+	"github.com/george012/zilliqa_sdk_go/workpool"
 	"strconv"
 	"strings"
 	"sync"

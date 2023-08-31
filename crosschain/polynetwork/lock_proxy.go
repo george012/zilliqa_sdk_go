@@ -20,13 +20,13 @@ package polynetwork
 import (
 	"errors"
 	"fmt"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/account"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/bech32"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/contract"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/core"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/provider"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/transaction"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
+	"github.com/george012/zilliqa_sdk_go/account"
+	"github.com/george012/zilliqa_sdk_go/bech32"
+	"github.com/george012/zilliqa_sdk_go/contract"
+	"github.com/george012/zilliqa_sdk_go/core"
+	"github.com/george012/zilliqa_sdk_go/provider"
+	"github.com/george012/zilliqa_sdk_go/transaction"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"strconv"
 )
 

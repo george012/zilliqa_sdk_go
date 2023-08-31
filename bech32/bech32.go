@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/Zilliqa/gozilliqa-sdk/v3/util"
-	"github.com/Zilliqa/gozilliqa-sdk/v3/validator"
+	"github.com/george012/zilliqa_sdk_go/util"
+	"github.com/george012/zilliqa_sdk_go/validator"
 )
 
 const charset = "qpzry9x8gf2tvdw0s3jn54khce6mua7l"

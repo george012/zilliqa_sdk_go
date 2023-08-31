@@ -16,7 +16,7 @@
  */
 package core
 
-import "github.com/Zilliqa/gozilliqa-sdk/v3/protobuf"
+import "github.com/george012/zilliqa_sdk_go/protobuf"
 
 type BlockBase struct {
 	BlockHash [32]byte
