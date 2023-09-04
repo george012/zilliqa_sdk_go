@@ -19,7 +19,6 @@ package go_schnorr
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"testing"
 
 	golangAssert "github.com/stretchr/testify/assert"
@@ -30,7 +29,7 @@ func TestSignVerify(t *testing.T) {
 }
 
 func run_sign_verify_test(t *testing.T) {
-	b, err := ioutil.ReadFile("data")
+	b, err := os.ReadFile("data")
 	if err != nil {
 		panic("read file failed")
 	}

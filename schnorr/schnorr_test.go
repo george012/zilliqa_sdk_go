@@ -20,7 +20,7 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
 )
@@ -30,7 +30,7 @@ func TestTrySign(t *testing.T) {
 }
 
 func run_sign_test(t *testing.T) {
-	b, err := ioutil.ReadFile("data")
+	b, err := os.ReadFile("data")
 	if err != nil {
 		panic("read file failed")
 	}
@@ -62,7 +62,7 @@ func run_sign_test(t *testing.T) {
 }
 
 func TestVerify(t *testing.T) {
-	b, err := ioutil.ReadFile("data")
+	b, err := os.ReadFile("data")
 	if err != nil {
 		panic("read file failed")
 	}

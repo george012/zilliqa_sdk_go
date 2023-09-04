@@ -20,13 +20,13 @@ import (
 	"encoding/json"
 	"github.com/george012/zilliqa_sdk_go/multisig"
 	"github.com/george012/zilliqa_sdk_go/util"
-	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
 )
 
 func Test_DeserializeFromJsonToDsBlockT(t *testing.T) {
-	dsJson, err := ioutil.ReadFile("dsblock.json")
+	dsJson, err := os.ReadFile("dsblock.json")
 	if err != nil {
 		t.Fatal(err.Error())
 	}
@@ -43,7 +43,7 @@ func Test_DeserializeFromJsonToDsBlockT(t *testing.T) {
 		t.Fail()
 	}
 
-	dsJson1, err3 := ioutil.ReadFile("dsblock2.json")
+	dsJson1, err3 := os.ReadFile("dsblock2.json")
 	if err3 != nil {
 		t.Fatal(err3.Error())
 	}
@@ -63,7 +63,7 @@ func Test_DeserializeFromJsonToDsBlockT(t *testing.T) {
 }
 
 func TestVerifyDsBlock(t *testing.T) {
-	dsJson, err := ioutil.ReadFile("dsblock3.json")
+	dsJson, err := os.ReadFile("dsblock3.json")
 	if err != nil {
 		t.Fatal(err.Error())
 	}

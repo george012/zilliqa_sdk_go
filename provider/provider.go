@@ -22,7 +22,7 @@ import (
 	"errors"
 	"github.com/george012/zilliqa_sdk_go/core"
 	"github.com/ybbus/jsonrpc/v2"
-	"io/ioutil"
+	"io"
 	"net/http"
 )
 
@@ -912,7 +912,7 @@ func (provider *Provider) GetSmartContractSubState(contractAddress string, param
 	}
 	defer resp.Body.Close()
 
-	result, err := ioutil.ReadAll(resp.Body)
+	result, err := io.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
 	}
@@ -1014,7 +1014,7 @@ func (provider *Provider) GetStateProof(contractAddress string, hashedStorageKey
 	}
 	defer resp.Body.Close()
 
-	result, err3 := ioutil.ReadAll(resp.Body)
+	result, err3 := io.ReadAll(resp.Body)
 	if err3 != nil {
 		return nil, err3
 	}

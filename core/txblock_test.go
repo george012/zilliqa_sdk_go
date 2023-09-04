@@ -20,13 +20,13 @@ import (
 	"encoding/json"
 	"github.com/george012/zilliqa_sdk_go/multisig"
 	"github.com/george012/zilliqa_sdk_go/util"
-	"io/ioutil"
+	"os"
 	"strings"
 	"testing"
 )
 
 func Test_DeserializeFromJsonToTxBlockT(t *testing.T) {
-	txJson, err := ioutil.ReadFile("txblock.json")
+	txJson, err := os.ReadFile("txblock.json")
 	if err != nil {
 		t.Fatal(err.Error())
 	}
@@ -49,7 +49,7 @@ func Test_DeserializeFromJsonToTxBlockT(t *testing.T) {
 }
 
 func Test_DeserializeFromJsonToTxBlockT2(t *testing.T) {
-	txJson, err := ioutil.ReadFile("txblock2.json")
+	txJson, err := os.ReadFile("txblock2.json")
 	if err != nil {
 		t.Fatal(err.Error())
 	}
@@ -72,7 +72,7 @@ func Test_DeserializeFromJsonToTxBlockT2(t *testing.T) {
 }
 
 func TestVerifyTxBlock(t *testing.T) {
-	txJson, err := ioutil.ReadFile("txblock3.json")
+	txJson, err := os.ReadFile("txblock3.json")
 	if err != nil {
 		t.Fatal(err.Error())
 	}
