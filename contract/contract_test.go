@@ -18,17 +18,15 @@ package contract
 
 import (
 	"fmt"
+	"github.com/george012/zilliqa_sdk_go/account"
 	"github.com/george012/zilliqa_sdk_go/core"
+	"github.com/george012/zilliqa_sdk_go/keytools"
+	"github.com/george012/zilliqa_sdk_go/provider"
+	"github.com/george012/zilliqa_sdk_go/util"
 	"github.com/stretchr/testify/assert"
-	"io/ioutil"
 	"os"
 	"strconv"
 	"testing"
-
-	"github.com/george012/zilliqa_sdk_go/account"
-	"github.com/george012/zilliqa_sdk_go/keytools"
-	provider2 "github.com/george012/zilliqa_sdk_go/provider"
-	"github.com/george012/zilliqa_sdk_go/util"
 )
 
 func TestContract_DeployTo(t *testing.T) {
@@ -42,7 +40,7 @@ func TestContract_DeployTo(t *testing.T) {
 
 	publickKey := keytools.GetPublicKeyFromPrivateKey(util.DecodeHex(privateKey), true)
 	address := keytools.GetAddressFromPublic(publickKey)
-	code, _ := ioutil.ReadFile("./fungible.scilla")
+	code, _ := os.ReadFile("./fungible.scilla")
 	init := []core.ContractValue{
 		{
 			"_scilla_version",
@@ -100,12 +98,12 @@ func TestContract_Deploy(t *testing.T) {
 	publickKey := keytools.GetPublicKeyFromPrivateKey(util.DecodeHex(privateKey), true)
 	address := keytools.GetAddressFromPublic(publickKey)
 	pubkey := util.EncodeHex(publickKey)
-	provider := provider2.NewProvider(host)
+	newProvider := provider.NewProvider(host)
 
 	wallet := account.NewWallet()
 	wallet.AddByPrivateKey(privateKey)
 
-	code, _ := ioutil.ReadFile("./fungible.scilla")
+	code, _ := os.ReadFile("./fungible.scilla")
 	init := []core.ContractValue{
 		{
 			"_scilla_version",
@@ -142,12 +140,12 @@ func TestContract_Deploy(t *testing.T) {
 		Code:     string(code),
 		Init:     init,
 		Signer:   wallet,
-		Provider: provider,
+		Provider: newProvider,
 	}
 
-	balAndNonce, _ := provider.GetBalance(address)
+	balAndNonce, _ := newProvider.GetBalance(address)
 
-	gasPrice, _ := provider.GetMinimumGasPrice()
+	gasPrice, _ := newProvider.GetMinimumGasPrice()
 
 	deployParams := DeployParams{
 		Version:      strconv.FormatInt(int64(util.Pack(chainID, msgVersion)), 10),
@@ -159,7 +157,7 @@ func TestContract_Deploy(t *testing.T) {
 
 	tx, err := contract.Deploy(deployParams)
 	assert.Nil(t, err, err)
-	tx.Confirm(tx.ID, 1000, 10, provider)
+	tx.Confirm(tx.ID, 1000, 10, newProvider)
 	assert.True(t, tx.Status == core.Confirmed)
 }
 
@@ -211,7 +209,7 @@ func TestContract_Call(t *testing.T) {
 	publickKey := keytools.GetPublicKeyFromPrivateKey(util.DecodeHex(privateKey), true)
 	address := keytools.GetAddressFromPublic(publickKey)
 	pubkey := util.EncodeHex(publickKey)
-	provider := provider2.NewProvider(host)
+	newProvider := provider.NewProvider(host)
 
 	wallet := account.NewWallet()
 	wallet.AddByPrivateKey(privateKey)
@@ -219,7 +217,7 @@ func TestContract_Call(t *testing.T) {
 	contract := Contract{
 		Address:  "bd7198209529dC42320db4bC8508880BcD22a9f2",
 		Signer:   wallet,
-		Provider: provider,
+		Provider: newProvider,
 	}
 
 	args := []core.ContractValue{
@@ -235,10 +233,10 @@ func TestContract_Call(t *testing.T) {
 		},
 	}
 
-	balAndNonce, err := provider.GetBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a")
+	balAndNonce, err := newProvider.GetBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a")
 	assert.Nil(t, err, err)
 	n := balAndNonce.Nonce + 1
-	gasPrice, _ := provider.GetMinimumGasPrice()
+	gasPrice, _ := newProvider.GetMinimumGasPrice()
 
 	params := CallParams{
 		Nonce:        strconv.FormatInt(n, 10),
@@ -251,7 +249,7 @@ func TestContract_Call(t *testing.T) {
 
 	tx, err2 := contract.Call("Transfer", args, params, true)
 	assert.Nil(t, err2, err2)
-	tx.Confirm(tx.ID, 1000, 3, provider)
+	tx.Confirm(tx.ID, 1000, 3, newProvider)
 	assert.True(t, tx.Status == core.Confirmed)
 }
 
@@ -266,7 +264,7 @@ func TestContract_Sign(t *testing.T) {
 
 	publickKey := keytools.GetPublicKeyFromPrivateKey(util.DecodeHex(privateKey), true)
 	pubkey := util.EncodeHex(publickKey)
-	provider := provider2.NewProvider(host)
+	newProvider := provider.NewProvider(host)
 
 	wallet := account.NewWallet()
 	wallet.AddByPrivateKey(privateKey)
@@ -274,7 +272,7 @@ func TestContract_Sign(t *testing.T) {
 	contract := Contract{
 		Address:  "84eb5C96Bec8d29eDdFBe36865E9B7F26b816f0F",
 		Signer:   wallet,
-		Provider: provider,
+		Provider: newProvider,
 	}
 
 	args := []core.ContractValue{
@@ -295,11 +293,11 @@ func TestContract_Sign(t *testing.T) {
 		},
 	}
 
-	balAndNonce, _ := provider.GetBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a")
+	balAndNonce, _ := newProvider.GetBalance("9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a")
 
 	n := balAndNonce.Nonce + 1
 
-	gasPrice, _ := provider.GetMinimumGasPrice()
+	gasPrice, _ := newProvider.GetMinimumGasPrice()
 
 	params := CallParams{
 		Nonce:        strconv.FormatInt(n, 10),
@@ -315,8 +313,7 @@ func TestContract_Sign(t *testing.T) {
 
 	pl := tx.ToTransactionPayload()
 	j, _ := pl.ToJson()
-
-	_, err2 := provider2.NewFromJson(j)
+	_, err2 := provider.NewFromJson(j)
 	assert.Nil(t, err2, err2)
 
 }

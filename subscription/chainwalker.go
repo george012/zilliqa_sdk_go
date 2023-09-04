@@ -75,10 +75,10 @@ func (t GetEventReceiptTask) UUID() string {
 	return t.Id
 }
 
-func NewGetReceiptTask(tx string, provider2 *provider.Provider, c *Complete, w *Walker, b uint64) GetEventReceiptTask {
+func NewGetReceiptTask(tx string, pv *provider.Provider, c *Complete, w *Walker, b uint64) GetEventReceiptTask {
 	return GetEventReceiptTask{
 		Id:       tx,
-		Provider: provider2,
+		Provider: pv,
 		Complete: c,
 		Walker:   w,
 		BlockNum: b,

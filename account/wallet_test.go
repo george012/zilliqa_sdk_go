@@ -24,7 +24,7 @@ import (
 	"testing"
 
 	"github.com/george012/zilliqa_sdk_go/core"
-	provider2 "github.com/george012/zilliqa_sdk_go/provider"
+	"github.com/george012/zilliqa_sdk_go/provider"
 	"github.com/george012/zilliqa_sdk_go/transaction"
 	"github.com/george012/zilliqa_sdk_go/util"
 	"github.com/stretchr/testify/assert"
@@ -36,9 +36,9 @@ func TestPayload(t *testing.T) {
 	}
 	wallet := NewWallet()
 	wallet.AddByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930")
-	provider := provider2.NewProvider("https://dev-api.zilliqa.com/")
+	newProvider := provider.NewProvider("https://dev-api.zilliqa.com/")
 
-	gasPrice, err := provider.GetMinimumGasPrice()
+	gasPrice, err := newProvider.GetMinimumGasPrice()
 	assert.Nil(t, err, err)
 
 	tx := &transaction.Transaction{
@@ -52,7 +52,7 @@ func TestPayload(t *testing.T) {
 		Data:         "",
 		Priority:     false,
 	}
-	err2 := wallet.Sign(tx, *provider)
+	err2 := wallet.Sign(tx, *newProvider)
 	assert.Nil(t, err2, err2)
 
 	pl := tx.ToTransactionPayload()
@@ -73,8 +73,8 @@ func TestWallet_SignWith(t *testing.T) {
 		GasPrice: "100000",
 		GasLimit: "50",
 	}
-	provider := provider2.NewProvider("https://dev-api.zilliqa.com/")
-	err := wallet.SignWith(tx, "9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a", *provider)
+	newProvider := provider.NewProvider("https://dev-api.zilliqa.com/")
+	err := wallet.SignWith(tx, "9bfec715a6bd658fcb62b0f8cc9bfa2ade71434a", *newProvider)
 	assert.Nil(t, err, err)
 	assert.NotEmpty(t, tx.Signature)
 }
@@ -85,10 +85,10 @@ func TestSendTransaction(t *testing.T) {
 	}
 	wallet := NewWallet()
 	wallet.AddByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930")
-	provider := provider2.NewProvider("https://dev-api.zilliqa.com/")
+	newProvider := provider.NewProvider("https://dev-api.zilliqa.com/")
 	fmt.Println("address: ", wallet.DefaultAccount.Address)
 
-	gasPrice, err := provider.GetMinimumGasPrice()
+	gasPrice, err := newProvider.GetMinimumGasPrice()
 	assert.Nil(t, err, err)
 
 	tx := &transaction.Transaction{
@@ -102,20 +102,20 @@ func TestSendTransaction(t *testing.T) {
 		Data:         "",
 		Priority:     false,
 	}
-	err2 := wallet.Sign(tx, *provider)
+	err2 := wallet.Sign(tx, *newProvider)
 	assert.Nil(t, err2, err2)
 
 	h, _ := tx.Hash()
 	fmt.Println("local transaction hash: ", util.EncodeHex(h))
 
-	rsp, err3 := provider.CreateTransaction(tx.ToTransactionPayload())
+	rsp, err3 := newProvider.CreateTransaction(tx.ToTransactionPayload())
 	assert.Nil(t, err3, err3)
 	assert.Nil(t, rsp.Error, rsp.Error)
 
 	resMap := rsp.Result.(map[string]interface{})
 	hash := resMap["TranID"].(string)
 	fmt.Printf("hash is %s\n", hash)
-	tx.Confirm(hash, 1000, 3, provider)
+	tx.Confirm(hash, 1000, 3, newProvider)
 	assert.True(t, tx.Status == core.Confirmed)
 }
 
@@ -126,9 +126,9 @@ func TestBatchSendTransaction(t *testing.T) {
 	}
 	wallet := NewWallet()
 	wallet.AddByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930")
-	provider := provider2.NewProvider("https://dev-api.zilliqa.com/")
+	newProvider := provider.NewProvider("https://dev-api.zilliqa.com/")
 
-	gasPrice, err := provider.GetMinimumGasPrice()
+	gasPrice, err := newProvider.GetMinimumGasPrice()
 	assert.Nil(t, err, err)
 
 	var transactions []*transaction.Transaction
@@ -148,10 +148,10 @@ func TestBatchSendTransaction(t *testing.T) {
 		transactions = append(transactions, txn)
 	}
 
-	err2 := wallet.SignBatch(transactions, *provider)
+	err2 := wallet.SignBatch(transactions, *newProvider)
 	assert.Nil(t, err2, err2)
 
-	batchSendingResult, err := wallet.SendBatchOneGo(transactions, *provider)
+	batchSendingResult, err := wallet.SendBatchOneGo(transactions, *newProvider)
 	if err != nil {
 		t.Fail()
 	} else {
@@ -165,9 +165,9 @@ func TestSendTransactionInsufficientAmount(t *testing.T) {
 	}
 	wallet := NewWallet()
 	wallet.AddByPrivateKey("e19d05c5452598e24caad4a0d85a49146f7be089515c905ae6a19e8a578a6930")
-	provider := provider2.NewProvider("https://dev-api.zilliqa.com/")
+	newProvider := provider.NewProvider("https://dev-api.zilliqa.com/")
 
-	gasPrice, err := provider.GetMinimumGasPrice()
+	gasPrice, err := newProvider.GetMinimumGasPrice()
 	assert.Nil(t, err, err)
 
 	tx := &transaction.Transaction{
@@ -182,7 +182,7 @@ func TestSendTransactionInsufficientAmount(t *testing.T) {
 		Priority:     false,
 	}
 
-	err2 := wallet.Sign(tx, *provider)
+	err2 := wallet.Sign(tx, *newProvider)
 	assert.NotNil(t, err2)
 	assert.Equal(t, err2.Error(), "balance is not sufficient")
 }
