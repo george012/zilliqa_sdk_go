@@ -19,7 +19,7 @@ package core
 import (
 	"github.com/george012/zilliqa_sdk_go/protobuf"
 	"github.com/george012/zilliqa_sdk_go/util"
-	"github.com/golang/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 	"strconv"
 )
 

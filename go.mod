@@ -7,7 +7,6 @@ require (
 	github.com/btcsuite/btcd/btcec/v2 v2.3.2
 	github.com/btcsuite/btcd/btcutil v1.1.3
 	github.com/ethereum/go-ethereum v1.10.26
-	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/gorilla/websocket v1.5.0
 	github.com/stretchr/testify v1.8.1
@@ -15,7 +14,7 @@ require (
 	github.com/ybbus/jsonrpc/v2 v2.1.7
 	golang.org/x/crypto v0.12.0
 	golang.org/x/sync v0.1.0
-	google.golang.org/protobuf v1.26.0
+	google.golang.org/protobuf v1.34.1
 )
 
 require (

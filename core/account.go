@@ -18,7 +18,7 @@ package core
 
 import (
 	protobuf "github.com/george012/zilliqa_sdk_go/protobuf"
-	"github.com/golang/protobuf/proto"
+	"google.golang.org/protobuf/proto"
 )
 
 type AccountBase struct {
